@@ -25,7 +25,7 @@ public class Topic_02_Locator {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
-    @Test
+    @Test                                   
     public void TC_01_() {
     }
     
