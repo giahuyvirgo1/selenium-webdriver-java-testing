@@ -113,6 +113,8 @@ public class Topic_06_WebElement_Commands_02 {
     @Test
     public void TC_04_RegisterFuntionAtMailChimp() {
         driver.get("https://login.mailchimp.com/signup/");
+        sleepInSeconds(5);
+
         //driver.findElement(By.cssSelector("input#email")).sendKeys("giahuyvirgo1@gmail.com");
         driver.findElement(By.xpath("//input[@id='new_password']")).sendKeys("12345");
         Assert.assertTrue(driver.findElement(By.xpath("//li[@class='lowercase-char not-completed']")).isDisplayed());
@@ -124,6 +126,8 @@ public class Topic_06_WebElement_Commands_02 {
 
 
         driver.findElement(By.xpath("//input[@id='new_password']")).clear();
+        sleepInSeconds(5);
+
         driver.findElement(By.xpath("//input[@id='new_password']")).sendKeys("huy");
         Assert.assertTrue(driver.findElement(By.xpath("//li[@class='lowercase-char completed']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//li[@class='uppercase-char not-completed']")).isDisplayed());
@@ -134,6 +138,8 @@ public class Topic_06_WebElement_Commands_02 {
 
 
         driver.findElement(By.xpath("//input[@id='new_password']")).clear();
+        sleepInSeconds(5);
+
         driver.findElement(By.xpath("//input[@id='new_password']")).sendKeys("Lehoanggiahuy1609@");
         Assert.assertFalse(driver.findElement(By.xpath("//li[@class='lowercase-char completed']")).isDisplayed());
         Assert.assertFalse(driver.findElement(By.xpath("//li[@class='uppercase-char completed']")).isDisplayed());
@@ -147,5 +153,13 @@ public class Topic_06_WebElement_Commands_02 {
     @AfterClass
     public void afterClass() {
         //driver.quit();
+
+    }
+    public void sleepInSeconds(long timeInSecond){
+        try {
+            Thread.sleep(timeInSecond*1000);
+        }catch (InterruptedException e){
+            throw new RuntimeException();
+        }
     }
 }
