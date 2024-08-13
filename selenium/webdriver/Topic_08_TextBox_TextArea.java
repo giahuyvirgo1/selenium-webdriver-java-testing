@@ -79,7 +79,7 @@ public class Topic_08_TextBox_TextArea {
         sleepInSeconds(5);
 
         String firstName = "Automation",lastName = "FC", emailAddress = getEmailAddress(), password = "123456789";
-        String fullName = firstName +""+ lastName ;
+        String fullName = firstName +" "+ lastName ;
         driver.findElement(By.xpath("//input[@id='firstname']")).sendKeys(firstName);
         driver.findElement(By.xpath("//input[@id='lastname']")).sendKeys(lastName);
         driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys(emailAddress);
@@ -87,7 +87,7 @@ public class Topic_08_TextBox_TextArea {
         driver.findElement(By.xpath("//input[@id='confirmation']")).sendKeys(password);
         driver.findElement(By.xpath("//button[@title='Register']")).click();
         sleepInSeconds(5);
-        //Assert.assertEquals(driver.findElement(By.xpath("//div[@class='welcome-msg']//strong")).getText(),"Hello, " + fullName + "!");
+        Assert.assertEquals(driver.findElement(By.xpath("//div[@class='welcome-msg']//strong")).getText(),"Hello, " + fullName + "!");
         Assert.assertEquals(driver.findElement(By.xpath("//li//span[text()='Thank you for registering with Main Website Store.']")).getText(),"Thank you for registering with Main Website Store.");
 
         String contactInfo = driver.findElement(By.xpath("//h3[text()='Contact Information']/parent::div/following-sibling::div/p")).getText();
@@ -107,7 +107,8 @@ public class Topic_08_TextBox_TextArea {
         driver.findElement(By.xpath("//input[@id='pass']")).sendKeys(password);
         driver.findElement(By.xpath("//button[@id='send2']")).click();
         sleepInSeconds(4);
-        Assert.assertEquals(driver.findElement(By.xpath("//div[@class='welcome-msg']//strong")).getText(),"Hello" + fullName + "!");
+
+        Assert.assertEquals(driver.findElement(By.xpath("//div[@class='welcome-msg']//strong")).getText(),"Hello, " + fullName + "!");
         contactInfo = driver.findElement(By.xpath("//h3[text()='Contact Information']/parent::div/following-sibling::div/p")).getText();
         Assert.assertTrue(contactInfo.contains(fullName));
         Assert.assertTrue(contactInfo.contains(emailAddress));
