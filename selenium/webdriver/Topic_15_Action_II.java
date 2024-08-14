@@ -10,12 +10,16 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.openqa.selenium.JavascriptExecutor;
+
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Topic_15_Action_II {
     WebDriver driver;
+
+
 
     Actions action;
 
@@ -55,15 +59,36 @@ public class Topic_15_Action_II {
 
     }
     @Test
-    public void TC_03_Double_CLick()  {
+    public void TC_03_Double_CLick() throws InterruptedException {
         driver.get("https://automationfc.github.io/basic-form/index.html");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("//button[text()='Double click me']")));
+        Thread.sleep(2000);
 
+
+//        action.scrollToElement(driver.findElement(By.xpath("//button[text()='Double click me']"))).perform();
+
+        Thread.sleep(3000);
         action.doubleClick(driver.findElement(By.xpath("//button[text()='Double click me']"))).perform();
         Assert.assertEquals(driver.findElement(By.xpath("//p[text()='Hello Automation Guys!']")).getText(),"Hello Automation Guys!");
+    }
+    @Test
+    public void TC_04_Right_Click() throws InterruptedException {
+        driver.get("http://swisnl.github.io/jQuery-contextMenu/demo.html");
+        WebElement rightClickBtn = driver.findElement(By.xpath("//p//span[text()='right click me']"));
+        action.contextClick(rightClickBtn).perform();
+        Thread.sleep(3000);
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.context-menu-icon-quit")).isDisplayed());
+        action.moveToElement(driver.findElement(By.xpath("//li[contains(@class, 'context-menu-icon-quit')]"))).perform();
+        Assert.assertTrue(driver.findElement(By.xpath("//li[contains(@class, 'context-menu-hover')]")).isDisplayed());
+        driver.findElement(By.xpath("//li[contains(@class, 'context-menu-hover')]")).click();
+        driver.switchTo().alert().accept();
+        Assert.assertFalse(driver.findElement(By.cssSelector("li.context-menu-icon-quit")).isDisplayed());
+
     }
 
     @AfterClass
     public void afterClass() {
-        driver.quit();
+        //driver.quit();
     }
 }
