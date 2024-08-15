@@ -34,10 +34,15 @@ public class Topic_17_Popup {
 
 
     }
+    @Test
+    public void TC_02_Popup() {
 
-    @AfterClass
+    }
+
+
+        @AfterClass
     public void afterClass() {
-        //driver.quit();
+        driver.quit();
     }
     public void sleepInSeconds(long timeInSecond){
         try {
